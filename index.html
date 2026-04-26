@@ -31,7 +31,7 @@
   body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,255,.012) 2px,rgba(0,212,255,.012) 4px);pointer-events:none;z-index:9998}
   body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
 
-  #bubble-canvas{position:fixed;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
+  #bubble-canvas{position:fixed;inset:0;z-index:500;pointer-events:none;width:100%;height:100%}
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(2,11,15,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:62px;animation:slideDown .7s ease forwards}
@@ -47,7 +47,6 @@
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
 
   /* HERO */
-  #hero{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;padding:100px 6% 60px;gap:5rem}
   .hero-left{flex:1;min-width:0}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.05);padding:6px 16px;border-radius:2px;font-family:var(--font-mono);font-size:.66rem;color:var(--accent);letter-spacing:.15em;margin-bottom:1.2rem;animation:fadeSlideUp .8s ease .3s both}
   .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);box-shadow:0 0 6px var(--accent2);animation:pulse 2s infinite}
@@ -93,13 +92,15 @@
   @keyframes tagFloat{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
 
   /* STATS */
-  .stats-bar{position:relative;z-index:2;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.2rem 6%;display:flex;justify-content:space-around;flex-wrap:wrap;gap:2rem}
   .stat-item{text-align:center}
   .stat-num{font-family:var(--font-display);font-size:2.4rem;color:var(--accent);text-shadow:var(--glow);display:block}
   .stat-label{font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:.15em;margin-top:4px;display:block}
 
   /* SECTIONS */
-  section{position:relative;z-index:2;padding:5rem 6%}
+  section{position:relative;z-index:501;padding:5rem 6%}
+  .stats-bar{position:relative;z-index:501;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.2rem 6%;display:flex;justify-content:space-around;flex-wrap:wrap;gap:2rem}
+  #hero{position:relative;z-index:501;min-height:100vh;display:flex;align-items:center;padding:100px 6% 60px;gap:5rem}
+  footer{position:relative;z-index:501;background:var(--bg);border-top:1px solid var(--border);padding:2.5rem 6%}
   .section-header{margin-bottom:3rem}
   .section-num{font-family:var(--font-mono);font-size:.66rem;color:var(--muted);letter-spacing:.2em;margin-bottom:.5rem}
   .section-title{font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2rem);color:#fff;letter-spacing:.05em;position:relative;display:inline-block}
@@ -201,6 +202,22 @@
   .thm-room:hover{border-color:var(--accent);color:var(--accent);transform:translateX(3px)}
   .thm-room::before{content:'✔';color:var(--accent2);font-size:.6rem;flex-shrink:0}
 
+  /* GITHUB LIVE BAR */
+  .gh-live-bar{display:flex;align-items:center;gap:12px;padding:.7rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;margin-bottom:1.8rem;flex-wrap:wrap}
+  .gh-live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 8px var(--accent2);flex-shrink:0;animation:pulse 2s infinite}
+  .gh-live-text{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);flex:1}
+  .gh-profile-btn{font-family:var(--font-mono);font-size:.68rem;color:var(--accent);text-decoration:none;border:1px solid var(--border);padding:4px 12px;border-radius:2px;transition:all .2s;white-space:nowrap}
+  .gh-profile-btn:hover{border-color:var(--accent);background:rgba(0,212,255,.08)}
+
+  /* SKELETON LOADING */
+  .proj-skeleton{opacity:.5;pointer-events:none}
+  .skel{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg2) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:4px;margin-bottom:.8rem}
+  .skel-icon{width:36px;height:36px;border-radius:6px;margin-bottom:1rem}
+  .skel-title{height:18px;width:70%}
+  .skel-line{height:12px;width:100%}
+  .skel-line.short{width:55%}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
   /* PROJECTS */
   #projects{background:var(--bg2)}
   .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
@@ -221,7 +238,9 @@
   .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
   .cert-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:border-color .3s,transform .2s;display:flex;flex-direction:column}
   .cert-card:hover{border-color:var(--accent2);transform:translateY(-3px)}
-  .cert-img-wrap{width:100%;height:150px;background:var(--bg3);overflow:hidden;position:relative;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+  .cert-img-wrap{width:100%;height:180px;background:var(--bg3);overflow:hidden;position:relative;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+  .cert-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .4s ease;display:block}
+  .cert-card:hover .cert-img-wrap img{transform:scale(1.05)}
   .cert-img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--bg3),var(--bg2))}
   .cert-placeholder-icon{font-size:2.2rem}
   .cert-placeholder-text{font-family:var(--font-mono);font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-align:center;line-height:1.6}
@@ -265,7 +284,6 @@
   @keyframes blink{50%{opacity:0}}
 
   /* FOOTER */
-  footer{position:relative;z-index:2;background:var(--bg);border-top:1px solid var(--border);padding:2.5rem 6%}
   .footer-top{display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-bottom:1.5rem;text-align:center}
   .footer-logo{font-family:var(--font-display);font-size:.95rem;color:var(--accent)}
   .footer-social{display:flex;gap:1.2rem;align-items:center;justify-content:center;flex-wrap:wrap;padding:0.5rem 0}
@@ -555,11 +573,20 @@
     <h2 class="section-title">Security Portfolio</h2>
     <div class="section-line"></div>
   </div>
-  <div class="projects-grid fade-in">
-    <div class="proj-card"><div class="proj-icon">🛡️</div><div class="proj-num">PROJECT · 01</div><div class="proj-name">SOC Home Lab</div><div class="proj-desc">A comprehensive hands-on SOC environment with Sigma detection rules, YARA signatures, automated IR playbooks, and setup scripts for Wazuh SIEM, Elastic Stack, Suricata, TheHive, Cortex, and MISP.</div><div class="proj-tech"><span class="proj-tag">Shell</span><span class="proj-tag">YARA</span><span class="proj-tag">Sigma</span><span class="proj-tag">Wazuh</span><span class="proj-tag">Elastic</span></div><div class="proj-links"><a href="https://github.com/raghava8/soc-home-lab" target="_blank" class="proj-link">⌥ GitHub ↗</a></div></div>
-    <div class="proj-card"><div class="proj-icon">🎫</div><div class="proj-num">PROJECT · 02</div><div class="proj-name">SOC Case Management Tool</div><div class="proj-desc">Browser-based SOC ticketing system — no backend, runs from HTML. Features MITRE ATT&amp;CK mapping, IOC tracking, analyst assignment, timestamped timelines, full-text search, JSON/CSV export.</div><div class="proj-tech"><span class="proj-tag">HTML</span><span class="proj-tag">JavaScript</span><span class="proj-tag">MITRE ATT&amp;CK</span><span class="proj-tag">SOC</span></div><div class="proj-links"><a href="https://github.com/raghava8/soc-ticketing-tool" target="_blank" class="proj-link">⌥ GitHub ↗</a><a href="https://raghava8.github.io/soc-ticketing-tool/" target="_blank" class="proj-link">Live ↗</a></div></div>
-    <div class="proj-card"><div class="proj-icon">📧</div><div class="proj-num">PROJECT · 03</div><div class="proj-name">Phishing Email Analysis</div><div class="proj-desc">Python toolkit for analysing phishing emails — extracting headers, identifying spoofed senders, parsing malicious URLs, detecting risky attachments, and cross-referencing IOCs.</div><div class="proj-tech"><span class="proj-tag">Python</span><span class="proj-tag">Email Forensics</span><span class="proj-tag">IOC Extraction</span></div><div class="proj-links"><a href="https://github.com/raghava8/Phishing_email_analysis" target="_blank" class="proj-link">⌥ GitHub ↗</a></div></div>
-    <div class="proj-card"><div class="proj-icon">🔗</div><div class="proj-num">PROFILE · 04</div><div class="proj-name">GitHub Profile</div><div class="proj-desc">All public repositories including security tooling, SOC automation scripts, and detection engineering projects. Actively open-sourcing practical blue team resources.</div><div class="proj-tech"><span class="proj-tag">Open Source</span><span class="proj-tag">Blue Team</span><span class="proj-tag">Detection Eng</span></div><div class="proj-links"><a href="https://github.com/raghava8" target="_blank" class="proj-link">All Repos ↗</a></div></div>
+
+  <!-- Live GitHub banner -->
+  <div class="gh-live-bar fade-in">
+    <span class="gh-live-dot"></span>
+    <span class="gh-live-text">Live from GitHub · Auto-updates when you push a new repo</span>
+    <a href="https://github.com/raghava8" target="_blank" class="gh-profile-btn">github.com/raghava8 ↗</a>
+  </div>
+
+  <!-- Cards injected by GitHub API — shows ALL public repos automatically -->
+  <div class="projects-grid fade-in" id="gh-projects-grid">
+    <!-- Loading skeleton -->
+    <div class="proj-card proj-skeleton"><div class="skel skel-icon"></div><div class="skel skel-title"></div><div class="skel skel-line"></div><div class="skel skel-line short"></div></div>
+    <div class="proj-card proj-skeleton"><div class="skel skel-icon"></div><div class="skel skel-title"></div><div class="skel skel-line"></div><div class="skel skel-line short"></div></div>
+    <div class="proj-card proj-skeleton"><div class="skel skel-icon"></div><div class="skel skel-title"></div><div class="skel skel-line"></div><div class="skel skel-line short"></div></div>
   </div>
 </section>
 
@@ -571,12 +598,99 @@
     <div class="section-line"></div>
   </div>
   <div class="certs-grid fade-in">
-    <div class="cert-card"><div class="cert-img-wrap"><div class="cert-img-placeholder"><span class="cert-placeholder-icon">🛡️</span><span class="cert-placeholder-text">SAL1 CERTIFIED<br>SECURITY ANALYTICS L1</span></div></div><div class="cert-body"><div class="cert-name">SAL1 — Security Analytics Level 1</div><div class="cert-issuer">Industry Certification</div><div class="cert-footer"><span class="cert-badge">✔ VERIFIED</span><a href="https://www.credly.com/users/raghava-inaparthi" target="_blank" class="cert-link">Credly ↗</a></div></div></div>
-    <div class="cert-card"><div class="cert-img-wrap"><div class="cert-img-placeholder"><span class="cert-placeholder-icon">🤖</span><span class="cert-placeholder-text">SIEMPLIFY CERTIFIED<br>SOAR ANALYST (SCSA)</span></div></div><div class="cert-body"><div class="cert-name">Siemplify Certified SOAR Analyst</div><div class="cert-issuer">Siemplify / Google</div><div class="cert-footer"><span class="cert-badge">✔ VERIFIED</span><a href="https://www.credly.com/users/raghava-inaparthi" target="_blank" class="cert-link">Credly ↗</a></div></div></div>
-    <div class="cert-card"><div class="cert-img-wrap"><div class="cert-img-placeholder"><span class="cert-placeholder-icon">📊</span><span class="cert-placeholder-text">SPLUNK 7.X<br>FUNDAMENTALS</span></div></div><div class="cert-body"><div class="cert-name">Splunk 7.x Fundamentals</div><div class="cert-issuer">Splunk</div><div class="cert-footer"><span class="cert-badge">✔ VERIFIED</span><a href="https://www.credly.com/users/raghava-inaparthi" target="_blank" class="cert-link">Credly ↗</a></div></div></div>
-    <div class="cert-card"><div class="cert-img-wrap"><div class="cert-img-placeholder"><span class="cert-placeholder-icon">🔒</span><span class="cert-placeholder-text">CYBER SECURITY 101<br>SEC1 · TRYHACKME</span></div></div><div class="cert-body"><div class="cert-name">Cyber Security 101 (SEC1)</div><div class="cert-issuer">TryHackMe</div><div class="cert-footer"><span class="cert-badge">✔ VERIFIED</span><a href="https://tryhackme.com/p/raghavatony8?tab=certificates" target="_blank" class="cert-link">View ↗</a></div></div></div>
-    <div class="cert-card"><div class="cert-img-wrap"><div class="cert-img-placeholder"><span class="cert-placeholder-icon">🌐</span><span class="cert-placeholder-text">NETWORK DEFENSE<br>CERTIFIED</span></div></div><div class="cert-body"><div class="cert-name">Network Defense</div><div class="cert-issuer">Industry Certification</div><div class="cert-footer"><span class="cert-badge">✔ VERIFIED</span><a href="https://www.credly.com/users/raghava-inaparthi" target="_blank" class="cert-link">Credly ↗</a></div></div></div>
-    <div class="cert-card"><div class="cert-img-wrap"><div class="cert-img-placeholder" style="background:linear-gradient(135deg,#0a1508,#061020)"><span class="cert-placeholder-icon">📚</span><span class="cert-placeholder-text" style="color:var(--accent3)">COMPTIA SECURITY+<br>IN PROGRESS — 2025</span></div></div><div class="cert-body"><div class="cert-name">CompTIA Security+</div><div class="cert-issuer">CompTIA</div><div class="cert-footer"><span class="cert-badge progress">IN PROGRESS</span></div></div></div>
+
+    <!-- SAL1 -->
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="SAL1.jpg" alt="SAL1 Certificate" loading="lazy">
+      </div>
+      <div class="cert-body">
+        <div class="cert-name">SAL1 — Security Analytics Level 1</div>
+        <div class="cert-issuer">TryHackMe · Issued 23 Mar 2026</div>
+        <div class="cert-footer">
+          <span class="cert-badge">✔ VERIFIED</span>
+          <a href="https://tryhackme.com/p/raghavatony8?tab=certificates" target="_blank" class="cert-link">View ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEC1 -->
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="SEC1_Certificate.jpg" alt="SEC1 Certificate" loading="lazy">
+      </div>
+      <div class="cert-body">
+        <div class="cert-name">Cyber Security 101 (SEC1)</div>
+        <div class="cert-issuer">TryHackMe · Issued 10 Feb 2026</div>
+        <div class="cert-footer">
+          <span class="cert-badge">✔ VERIFIED</span>
+          <a href="https://tryhackme.com/p/raghavatony8?tab=certificates" target="_blank" class="cert-link">View ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Siemplify SCSA -->
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="Siemplify__Chronicle_.jpg" alt="Siemplify SCSA Certificate" loading="lazy">
+      </div>
+      <div class="cert-body">
+        <div class="cert-name">Siemplify Certified SOAR Analyst (SCSA)</div>
+        <div class="cert-issuer">Siemplify / Google · Issued Aug 2020</div>
+        <div class="cert-footer">
+          <span class="cert-badge">✔ VERIFIED</span>
+          <a href="https://www.credly.com/users/raghava-inaparthi" target="_blank" class="cert-link">Credly ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cisco Network Defense -->
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="Cisco_-_Network_Defense.jpg" alt="Cisco Network Defense Certificate" loading="lazy">
+      </div>
+      <div class="cert-body">
+        <div class="cert-name">Network Defense</div>
+        <div class="cert-issuer">Cisco Networking Academy · Issued 19 Feb 2026</div>
+        <div class="cert-footer">
+          <span class="cert-badge">✔ VERIFIED</span>
+          <a href="https://www.credly.com/users/raghava-inaparthi" target="_blank" class="cert-link">Credly ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUVI Guinness World Record -->
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="HCL_GUVI_Certification_-_019Wo22X2I61na2852.png" alt="GUVI Guinness World Record Certificate" loading="lazy">
+      </div>
+      <div class="cert-body">
+        <div class="cert-name">Guinness World Record — Online Programming Lesson</div>
+        <div class="cert-issuer">GUVI / HCL · Issued May 2021</div>
+        <div class="cert-footer">
+          <span class="cert-badge">✔ VERIFIED</span>
+          <a href="https://www.guvi.in/certificate?id=019Wo22X2I61na2852" target="_blank" class="cert-link">Verify ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CompTIA Security+ (in progress — no image) -->
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <div class="cert-img-placeholder" style="background:linear-gradient(135deg,#0a1508,#061020)">
+          <span class="cert-placeholder-icon">📚</span>
+          <span class="cert-placeholder-text" style="color:var(--accent3)">COMPTIA SECURITY+<br>IN PROGRESS — 2025</span>
+        </div>
+      </div>
+      <div class="cert-body">
+        <div class="cert-name">CompTIA Security+</div>
+        <div class="cert-issuer">CompTIA</div>
+        <div class="cert-footer">
+          <span class="cert-badge progress">IN PROGRESS</span>
+        </div>
+      </div>
+    </div>
+
   </div>
   </section>
 
@@ -683,6 +797,83 @@
 
 <script>
 
+/* ── GITHUB LIVE PROJECTS — Auto-fetches all public repos via GitHub API ──
+   Every time you push a new repo to github.com/raghava8 it will
+   automatically appear here the next time someone loads the portfolio.
+   No manual update needed. ── */
+(function(){
+  const GITHUB_USER = 'raghava8';
+  const grid = document.getElementById('gh-projects-grid');
+
+  /* Map repo names → richer descriptions & icons */
+  const META = {
+    'soc-home-lab':           { icon:'🛡️', desc:'A hands-on SOC home lab featuring Sigma detection rules, YARA signatures, automated IR playbooks, and setup scripts for Wazuh SIEM, Elastic Stack, Suricata, TheHive, Cortex, and MISP — replicating a real-world SOC stack.' },
+    'soc-ticketing-tool':     { icon:'🎫', desc:'Browser-based SOC ticketing system — no backend required. Features MITRE ATT&CK mapping, IOC tracking, analyst assignment, timestamped timelines, full-text search, and JSON/CSV export.', live:'https://raghava8.github.io/soc-ticketing-tool/' },
+    'Phishing_email_analysis':{ icon:'📧', desc:'Python toolkit for analysing phishing emails — extracting headers, identifying spoofed senders, parsing malicious URLs, detecting risky attachments, and cross-referencing IOCs.' },
+    'firstapp':               { icon:'🚀', desc:'Exploring new development ideas and experimenting with code. A test-bed for learning and building new security-oriented tools and applications.' },
+  };
+
+  const LANG_COLORS = {
+    Python:'#3572A5', HTML:'#e34c26', JavaScript:'#f1e05a',
+    Shell:'#89e051', CSS:'#563d7c', TypeScript:'#2b7489'
+  };
+
+  function langDot(lang){
+    const c = LANG_COLORS[lang] || '#aaa';
+    return `<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:5px;vertical-align:middle"></span>${lang}`;
+  }
+
+  function buildCard(repo, idx){
+    const m    = META[repo.name] || {};
+    const icon = m.icon || '📁';
+    const desc = m.desc || repo.description || 'A GitHub project by Raghava Inaparthi.';
+    const num  = String(idx+1).padStart(2,'0');
+    const lang = repo.language ? `<span class="proj-tag">${langDot(repo.language)}</span>` : '';
+    const stars = repo.stargazers_count > 0
+      ? `<span class="proj-tag" style="color:var(--accent3)">★ ${repo.stargazers_count}</span>` : '';
+    const liveBtn = m.live
+      ? `<a href="${m.live}" target="_blank" class="proj-link">Live ↗</a>` : '';
+    const updated = new Date(repo.updated_at).toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+
+    return `
+    <div class="proj-card fade-in">
+      <div class="proj-icon">${icon}</div>
+      <div class="proj-num">PROJECT · ${num} &nbsp;·&nbsp; <span style="color:var(--muted);font-size:.58rem">Updated ${updated}</span></div>
+      <div class="proj-name">${repo.name.replace(/-/g,' ').replace(/_/g,' ')}</div>
+      <div class="proj-desc">${desc}</div>
+      <div class="proj-tech">${lang}${stars}</div>
+      <div class="proj-links">
+        <a href="${repo.html_url}" target="_blank" class="proj-link">⌥ GitHub ↗</a>
+        ${liveBtn}
+      </div>
+    </div>`;
+  }
+
+  fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=20`)
+    .then(r => r.json())
+    .then(repos => {
+      /* Filter out forks, sort: known security repos first, then rest */
+      const priority = ['soc-home-lab','soc-ticketing-tool','Phishing_email_analysis','firstapp'];
+      const sorted = [
+        ...priority.map(n => repos.find(r => r.name===n)).filter(Boolean),
+        ...repos.filter(r => !priority.includes(r.name) && !r.fork)
+      ];
+
+      grid.innerHTML = sorted.map((r,i) => buildCard(r,i)).join('');
+
+      /* Re-observe new cards for fade-in */
+      grid.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    })
+    .catch(() => {
+      /* API failed — show static fallback cards */
+      grid.innerHTML = `
+        <div class="proj-card"><div class="proj-icon">🛡️</div><div class="proj-num">PROJECT · 01</div><div class="proj-name">SOC Home Lab</div><div class="proj-desc">Hands-on SOC environment with Sigma rules, YARA, IR playbooks, Wazuh SIEM, Elastic Stack, Suricata, TheHive, Cortex, and MISP.</div><div class="proj-tech"><span class="proj-tag">Shell</span><span class="proj-tag">YARA</span><span class="proj-tag">Sigma</span></div><div class="proj-links"><a href="https://github.com/raghava8/soc-home-lab" target="_blank" class="proj-link">⌥ GitHub ↗</a></div></div>
+        <div class="proj-card"><div class="proj-icon">🎫</div><div class="proj-num">PROJECT · 02</div><div class="proj-name">SOC Case Management Tool</div><div class="proj-desc">Browser-based SOC ticketing — MITRE ATT&amp;CK mapping, IOC tracking, timelines, CSV export.</div><div class="proj-tech"><span class="proj-tag">HTML</span><span class="proj-tag">JavaScript</span></div><div class="proj-links"><a href="https://github.com/raghava8/soc-ticketing-tool" target="_blank" class="proj-link">⌥ GitHub ↗</a><a href="https://raghava8.github.io/soc-ticketing-tool/" target="_blank" class="proj-link">Live ↗</a></div></div>
+        <div class="proj-card"><div class="proj-icon">📧</div><div class="proj-num">PROJECT · 03</div><div class="proj-name">Phishing Email Analysis</div><div class="proj-desc">Python toolkit for phishing analysis — header extraction, IOC cross-referencing, URL parsing.</div><div class="proj-tech"><span class="proj-tag">Python</span></div><div class="proj-links"><a href="https://github.com/raghava8/Phishing_email_analysis" target="_blank" class="proj-link">⌥ GitHub ↗</a></div></div>
+        <div class="proj-card"><div class="proj-icon">🚀</div><div class="proj-num">PROJECT · 04</div><div class="proj-name">First App</div><div class="proj-desc">Exploring new development ideas and building security-oriented tools.</div><div class="proj-tech"><span class="proj-tag">Development</span></div><div class="proj-links"><a href="https://github.com/raghava8/firstapp" target="_blank" class="proj-link">⌥ GitHub ↗</a></div></div>`;
+    });
+})();
+
 /* ── CYBER BUBBLE ANIMATION ── */
 (function(){
   const canvas = document.getElementById('bubble-canvas');
@@ -708,40 +899,59 @@
   class Bubble {
     constructor(){ this.init(); }
     init(){
-      this.x  = Math.random()*W;
-      this.y  = Math.random()*H;
-      this.vx = (Math.random()-.5)*.4;
-      this.vy = (Math.random()-.5)*.4;
-      this.text = TERMS[Math.floor(Math.random()*TERMS.length)];
-      this.fs   = Math.random()*5+8;
-      this.alpha = Math.random()*.15+.05;
-      this.color = Math.random()>.5?'0,212,255':'0,255,157';
-      this.rx = 0; this.ry = 0;
+      this.x    = Math.random() * W;
+      this.y    = Math.random() * H;
+      this.vx   = (Math.random() - .5) * .55;
+      this.vy   = (Math.random() - .5) * .55;
+      this.text = TERMS[Math.floor(Math.random() * TERMS.length)];
+      this.fs   = Math.random() * 8 + 11;        /* 11–19px — clearly readable */
+      this.alpha= Math.random() * .28 + .18;      /* 0.18–0.46 — much more visible */
+      this.color= Math.random() > .5 ? '0,212,255' : '0,255,157';
+      this.rx   = 0; this.ry = 0;
     }
     update(){
-      const dx=this.x-mouse.x, dy=this.y-mouse.y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      const R=130;
-      if(d<R&&d>0){ const f=(R-d)/R; this.rx+=(dx/d)*f*1.4; this.ry+=(dy/d)*f*1.4; }
-      this.rx*=.91; this.ry*=.91;
-      this.x+=this.vx+this.rx; this.y+=this.vy+this.ry;
-      if(this.x<-80) this.x=W+80; if(this.x>W+80) this.x=-80;
-      if(this.y<-30) this.y=H+30; if(this.y>H+30) this.y=-30;
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const d  = Math.sqrt(dx*dx + dy*dy);
+      const R  = 160;
+      if(d < R && d > 0){
+        const f = (R - d) / R;
+        this.rx += (dx/d) * f * 2.2;
+        this.ry += (dy/d) * f * 2.2;
+      }
+      this.rx *= .88; this.ry *= .88;
+      this.x  += this.vx + this.rx;
+      this.y  += this.vy + this.ry;
+      /* wrap around edges */
+      if(this.x < -120) this.x = W + 120;
+      if(this.x > W+120) this.x = -120;
+      if(this.y < -40)  this.y = H + 40;
+      if(this.y > H+40) this.y = -40;
     }
     draw(){
-      ctx.save(); ctx.globalAlpha=this.alpha;
-      ctx.font=`${this.fs}px 'Share Tech Mono',monospace`;
-      ctx.fillStyle=`rgb(${this.color})`;
-      ctx.fillText(this.text,this.x,this.y);
+      ctx.save();
+      ctx.globalAlpha = this.alpha;
+      ctx.font = `${this.fs}px 'Share Tech Mono', monospace`;
+      ctx.fillStyle = `rgb(${this.color})`;
+      /* subtle glow via shadow */
+      ctx.shadowColor = `rgba(${this.color}, 0.6)`;
+      ctx.shadowBlur  = 6;
+      ctx.fillText(this.text, this.x, this.y);
       ctx.restore();
     }
   }
 
-  const bubbles = Array.from({length:65},()=>new Bubble());
-  document.addEventListener('mousemove',e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
-  document.addEventListener('mouseleave',()=>{ mouse.x=-9999; mouse.y=-9999; });
+  /* 90 bubbles — enough to cover all sections as canvas is fixed */
+  const bubbles = Array.from({length:90}, () => new Bubble());
 
-  function loop(){ ctx.clearRect(0,0,W,H); bubbles.forEach(b=>{b.update();b.draw();}); requestAnimationFrame(loop); }
+  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  function loop(){
+    ctx.clearRect(0, 0, W, H);
+    bubbles.forEach(b => { b.update(); b.draw(); });
+    requestAnimationFrame(loop);
+  }
   loop();
 })();
 
